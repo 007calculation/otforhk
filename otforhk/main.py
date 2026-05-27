@@ -8,6 +8,7 @@ import asyncio
 import random
 from io import BytesIO
 import aiohttp
+import datetime
 load_dotenv()
 token = os.getenv('DISCORD_TOKEN')
 handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')
@@ -48,6 +49,18 @@ text2 = [
 @bot.event
 async def on_ready():
     print(f"/networth")
+
+def get_greeting():
+    current_hour = datetime.datetime.now().hour
+    
+    if 5 <= current_hour < 12:
+        return "Good Morning! ☀️"
+    elif 12 <= current_hour < 17:
+        return "Good Afternoon! 🌤️"
+    elif 17 <= current_hour < 21:
+        return "Good Evening! 🌙"
+    else:
+        return "Good Night! 🌚"
 
 @bot.command()
 async def yap(ctx):
@@ -94,6 +107,11 @@ async def on_message(message):
     if "67" in message.content.lower():
         for i in range(1, 4):
             await message.channel.send(67)
+
+    if "otforhk" in message.content.lower():
+        greeting = get_greeting()
+        await message.channel.send(f"{greeting} {message.author.mention}")
+        await message.channel.send(f"How can I help you today?")
 
     await bot.process_commands(message)
 
@@ -148,5 +166,18 @@ async def networth(ctx):
 async def pain(ctx):
     await ctx.send("https://www.instagram.com/p/DYzsnyZGhUu/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==")
 
+@bot.command()
+async def help(ctx):
+    word = """
+    **Commands:**
+    /no
+    /fight
+    /networth
+    /fox
+    /hello
+    /hoyo
+    /yap
+    """
+    await ctx.send(word)
 
 bot.run(token, log_handler=handler, log_level=logging.DEBUG)
