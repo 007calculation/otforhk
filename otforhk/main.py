@@ -167,7 +167,7 @@ async def pain(ctx):
     await ctx.send("https://www.instagram.com/p/DYzsnyZGhUu/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==")
 
 @bot.command()
-async def help(ctx):
+async def cmd(ctx):
     word = """
     **Commands:**
     /no
