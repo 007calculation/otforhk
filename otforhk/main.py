@@ -19,9 +19,9 @@ gif2 = "https://tenor.com/view/miyabi-hoshimi-miyabi-zzz-disagreement-disagree-g
 painduxe = 678581104810131456
 
 USERS_TO_DM = [
-    783688506479607859
-    #678581104810131456,  # User 1 ID
-    #628918103207837758   # User 2 ID
+    783688506479607859,
+    678581104810131456,
+    628918103207837758
 ]
 @bot.event
 async def on_ready():
